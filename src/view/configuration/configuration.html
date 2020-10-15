@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Extension Configuration</title>
+  </head>
+  <body>
+    <form>
+      <h2>LogRocket Snippet Configuration</h2>
+      <label>
+        <span class="label">AppID <small>the first parameter to LogRocket.init()</small>:<br></span>
+        <input id="appID" style="width: 450px;" placeholder="example/appid">
+      </label>
+    </form>
+
+    <script src="https://assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
+    <script>
+      window.extensionBridge.register({
+        init: function(info) {
+          if (info.settings) {
+            document.getElementById('appID').value = info.settings.appID;
+          }
+        },
+
+        getSettings: function() {
+          return {
+            appID: document.getElementById('appID').value
+          };
+        },
+
+        validate: function() {
+          return document.getElementById('appID').value.length > 0;
+        }
+      });
+    </script>
+  </body>
+</html>
